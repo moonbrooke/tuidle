@@ -35,7 +35,7 @@ GOOS=linux   GOARCH=amd64 go build -o tuidle .                      # Linux targ
 GOOS=darwin  GOARCH=arm64 go build -o tuidle .                      # macOS target
 GOOS=windows GOARCH=amd64 go build -o tuidle.exe .                  # Windows target
 
-# On Windows
+# On Windows (PowerShell)
 $env:GOOS="linux"; $env:GOARCH="amd64"; go build -o tuidle .        # Linux target
 $env:GOOS="darwin"; $env:GOARCH="arm64"; go build -o tuidle .       # macOS target
 $env:GOOS="windows"; $env:GOARCH="amd64"; go build -o tuidle.exe .  # Windows target
