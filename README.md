@@ -31,8 +31,8 @@ go vet ./...
 
 ```sh
 # On Linux/macOS
-GOOS=linux   GOARCH=amd64 go build -o tuidle .                      # Linux target
-GOOS=darwin  GOARCH=arm64 go build -o tuidle .                      # macOS target
+GOOS=linux GOARCH=amd64 go build -o tuidle .                        # Linux target
+GOOS=darwin GOARCH=arm64 go build -o tuidle .                       # macOS target
 GOOS=windows GOARCH=amd64 go build -o tuidle.exe .                  # Windows target
 
 # On Windows (PowerShell)
