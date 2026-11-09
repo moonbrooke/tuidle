@@ -87,29 +87,6 @@ after 1.5 s and drive the 50 ms board shake after an invalid guess.
 - No mouse support is enabled: input is keyboard-only, which keeps
   behaviour identical across terminals.
 
-## Demo
+## Screenshot
 
-Scored/typed tiles are solid colour blocks (` X `); not-yet
-slots and unused keys are `[X]` / `[ ]` brackets. Colours are
-omitted below — in a terminal the blocks are green / yellow /
-gray / dark (see the Rules above).
-
-```
-                                TUIDLE
-                  Guess the 5-letter word in 6 tries
-
-                           P   L   E   A   D
-                           S   H   I   F   T
-                           F   A   T  [ ] [ ]
-                          [ ] [ ] [ ] [ ] [ ]
-                          [ ] [ ] [ ] [ ] [ ]
-                          [ ] [ ] [ ] [ ] [ ]
-
-               [Q] [W] [E] [R] [T] [Y] [U] [I] [O] [P]
-                 [A] [S] [D] [F] [G] [H] [J] [K] [L]
-                     [Z] [X] [C] [V] [B] [N] [M]
-
-                    Type a guess, then press Enter
-       a-z type  enter submit  backspace delete  ctrl+c / esc quit
-Word list: tuidle-answers.json + tuidle-allowed-guesses.json (12972 words)
-```
+![Tuidle Screenshot](./assets/screenshot.png)
