@@ -1,8 +1,9 @@
 # Build output
-/wordle-tui
-/wordle-tui.exe
-/wordle-tui-linux
-/wordle-tui-darwin
+build/
+/tuidle
+/tuidle.exe
+/tuidle-linux
+/tuidle-darwin
 *.exe
 
 # Go
