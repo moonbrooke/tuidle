@@ -89,21 +89,21 @@ omitted below — in a terminal the blocks are green / yellow /
 gray / dark (see the Rules above).
 
 ```
-                    TUIDLE
-        Guess the 5-letter word in 6 tries
+                                TUIDLE
+                  Guess the 5-letter word in 6 tries
 
-           P   L   E   A   D
-           S   H   I   F   T
-           F   A   T  [ ] [ ]
-          [ ] [ ] [ ] [ ] [ ]
-          [ ] [ ] [ ] [ ] [ ]
-          [ ] [ ] [ ] [ ] [ ]
+                           P   L   E   A   D
+                           S   H   I   F   T
+                           F   A   T  [ ] [ ]
+                          [ ] [ ] [ ] [ ] [ ]
+                          [ ] [ ] [ ] [ ] [ ]
+                          [ ] [ ] [ ] [ ] [ ]
 
-   [Q] [W] [E] [R] [T] [Y] [U] [I] [O] [P]
-      [A] [S] [D] [F] [G] [H] [J] [K] [L]
-         [Z] [X] [C] [V] [B] [N] [M]
+               [Q] [W] [E] [R] [T] [Y] [U] [I] [O] [P]
+                 [A] [S] [D] [F] [G] [H] [J] [K] [L]
+                     [Z] [X] [C] [V] [B] [N] [M]
 
-             Type a guess, then press Enter
-   a-z type  enter submit  backspace delete  ctrl+c / esc quit
-                Word list: tuidle-answers.json + tuidle-allowed-guesses.json (12972 words)
+                    Type a guess, then press Enter
+       a-z type  enter submit  backspace delete  ctrl+c / esc quit
+Word list: tuidle-answers.json + tuidle-allowed-guesses.json (12972 words)
 ```
