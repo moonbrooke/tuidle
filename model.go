@@ -60,11 +60,11 @@ type model struct {
 }
 
 var (
-	helpType    = key.NewBinding(key.WithKeys("a-z"), key.WithHelp("a-z", "type"))
-	helpEnter   = key.NewBinding(key.WithKeys("enter"), key.WithHelp("enter", "submit"))
-	helpBack    = key.NewBinding(key.WithKeys("backspace"), key.WithHelp("backspace", "delete"))
-	helpQuit    = key.NewBinding(key.WithKeys("ctrl+c", "esc"), key.WithHelp("ctrl+c / esc", "quit"))
-	helpRestart = key.NewBinding(key.WithKeys("r", "enter"), key.WithHelp("r / enter", "restart"))
+	helpType    = key.NewBinding(key.WithKeys("a-z"), key.WithHelp("[a-z]", "type,"))
+	helpEnter   = key.NewBinding(key.WithKeys("enter"), key.WithHelp("[enter]", "submit,"))
+	helpBack    = key.NewBinding(key.WithKeys("backspace"), key.WithHelp("[backspace]", "delete,"))
+	helpQuit    = key.NewBinding(key.WithKeys("ctrl+c", "esc"), key.WithHelp("[ctrl+c / esc]", "quit"))
+	helpRestart = key.NewBinding(key.WithKeys("r", "enter"), key.WithHelp("[r / enter]", "restart,"))
 )
 
 var _ tea.Model = model{}
