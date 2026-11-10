@@ -1,3 +1,7 @@
+# Rust build output
+/target
+**/*.rs.bk
+
 # Build output
 build/
 /tuidle
@@ -5,6 +9,3 @@ build/
 /tuidle-linux
 /tuidle-darwin
 *.exe
-
-# Go
-*.out
