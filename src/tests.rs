@@ -410,16 +410,17 @@ fn test_view_renders_board_keyboard_and_status() {
 
     for want in [
         "TUIDLE",
+        "Guess the 5-letter word in 6 tries",
         "C",
         "R",
         "A",
-        "[Q]",
-        "[W]",
-        "[P]",
-        "[A]",
-        "[L]",
-        "[Z]",
-        "[M]",
+        " Q ",
+        " W ",
+        " P ",
+        " A ",
+        " L ",
+        " Z ",
+        " M ",
         "Type a guess",
     ] {
         assert!(
@@ -433,9 +434,8 @@ fn test_view_renders_board_keyboard_and_status() {
         "View() must not contain '|':\n{rendered}"
     );
     assert!(
-        rendered.matches('[').count() >= 6 * 5,
-        "expected at least {} bracketed tiles:\n{rendered}",
-        6 * 5
+        rendered.matches('·').count() >= 2,
+        "expected empty slots in the active row:\n{rendered}"
     );
 }
 
@@ -457,11 +457,39 @@ fn test_ratatui_render_buffer() {
         .map(|cell| cell.symbol())
         .collect::<String>();
 
+    assert!(text.contains("╭"), "rendered buffer:\n{text}");
+    assert!(text.contains("╰"), "rendered buffer:\n{text}");
     assert!(text.contains("TUIDLE"), "rendered buffer:\n{text}");
-    assert!(text.contains("[Q]"), "rendered buffer:\n{text}");
+    assert!(text.contains(" Q "), "rendered buffer:\n{text}");
+    assert!(text.contains("10 words"), "rendered buffer:\n{text}");
     assert!(
         text.contains("Guess the 5-letter word in 6 tries"),
         "rendered buffer:\n{text}"
+    );
+}
+
+#[test]
+fn test_ratatui_render_small_terminal_falls_back() {
+    let backend = TestBackend::new(40, 14);
+    let mut terminal = Terminal::new(backend).expect("test terminal");
+    let mut model = test_model("CRANE");
+    model.resize(40, 14);
+
+    terminal
+        .draw(|frame| view::render(frame, &model))
+        .expect("draw compact view");
+
+    let buffer = terminal.backend().buffer();
+    let text = buffer
+        .content
+        .iter()
+        .map(|cell| cell.symbol())
+        .collect::<String>();
+
+    assert!(text.contains("TUIDLE"), "rendered buffer:\n{text}");
+    assert!(
+        !text.contains('╭'),
+        "small terminals should not draw the card border:\n{text}"
     );
 }
 

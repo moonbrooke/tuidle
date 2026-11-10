@@ -30,6 +30,16 @@ cargo clippy --all-targets -- -D warnings
 cargo fmt --all -- --check
 ```
 
+### Controls
+
+| Key | Action |
+|-----|--------|
+| `a`–`z` | Type a letter |
+| `Enter` | Submit the current guess |
+| `Backspace` | Delete the last letter |
+| `r` / `Enter` | Restart after a win or loss |
+| `Esc` / `Ctrl+C` | Quit |
+
 ### Cross-compiling
 
 Install the target with rustup, then build with Cargo:
@@ -85,12 +95,11 @@ triggers a 50 ms board shake, matching the original behaviour.
 - Tile colours are emitted as RGB values; modern terminals render them
   directly and most others approximate them. Windows Terminal is recommended
   for the best look.
-- The UI uses only plain ASCII (solid ` X ` blocks plus `[X]` / `[ ]`
-  brackets for not-yet tiles), so it renders correctly in legacy Windows
-  code pages as well as modern terminals. There are no `|` outlines, which
-  keeps the board from looking like a row of vertical stripes.
-- Recommended terminal size is at least 60×20; smaller terminals still work —
-  the layout simply is not centred.
+- The UI uses Unicode box-drawing and block glyphs for its card layout, tiles,
+  and status pills. Use a UTF-8 terminal (Windows Terminal, iTerm2, or any
+  modern Linux terminal) for the intended appearance.
+- Recommended terminal size is at least 60×24; smaller terminals still work —
+  the card border is dropped and the bare layout is centred instead.
 - No mouse support is enabled: input is keyboard-only, which keeps behaviour
   identical across terminals.
 
