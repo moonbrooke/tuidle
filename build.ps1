@@ -1,27 +1,52 @@
+param(
+    [switch]$All
+)
+
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
 
 Set-Location -Path $PSScriptRoot
 
+function Get-OutputPath([string]$target) {
+    if ($target -like "*windows*") { return "build/windows/tuidle.exe" }
+    if ($target -like "*darwin*") { return "build/macos/tuidle" }
+    if ($target -like "*linux*") { return "build/linux/tuidle" }
+    return "build/$target/tuidle"
+}
+
+$hostTarget = ((rustc -vV) | Select-String '^host:').ToString().Split(':', 2)[1].Trim()
+
 $targets = @(
-    @{ GOOS = "windows"; GOARCH = "amd64"; Output = "build/windows/tuidle.exe" },
-    @{ GOOS = "linux";   GOARCH = "amd64"; Output = "build/linux/tuidle" },
-    @{ GOOS = "darwin";  GOARCH = "arm64"; Output = "build/macos/tuidle" }
+    "x86_64-pc-windows-msvc",
+    "x86_64-unknown-linux-gnu",
+    "aarch64-apple-darwin"
 )
 
-foreach ($target in $targets) {
-    $env:GOOS = $target.GOOS
-    $env:GOARCH = $target.GOARCH
+if (-not $All) {
+    $targets = @($hostTarget)
+}
 
-    $outputDir = Split-Path -Parent $target.Output
+$installed = @(rustup target list --installed)
+
+foreach ($target in $targets) {
+    if ($installed -notcontains $target) {
+        Write-Host "Installing Rust target $target..."
+        rustup target add $target
+    }
+
+    $output = Get-OutputPath $target
+    $outputDir = Split-Path -Parent $output
     New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
 
-    Write-Host "Building $($target.GOOS)/$($target.GOARCH) -> $($target.Output)"
-    go build -o $target.Output .
+    Write-Host "Building $target -> $output"
+    cargo build --release --target $target
 
     if ($LASTEXITCODE -ne 0) {
-        throw "go build failed for $($target.GOOS)/$($target.GOARCH)"
+        throw "cargo build failed for $target"
     }
+
+    $binary = if ($target -like "*windows*") { "tuidle.exe" } else { "tuidle" }
+    Copy-Item -Force -Path "target/$target/release/$binary" -Destination $output
 }
 
 Write-Host "All builds complete."
