@@ -46,13 +46,12 @@ Optional flags:
 ```sh
 go run . -answers path/to/answers.json  # custom answers/target pool
 go run . -guesses path/to/guesses.txt   # custom allowed-guesses list
-go run . -words   path/to/words.txt     # legacy: same path for both
-go run . -target CRANE                  # force the answer (testing aid)
+go run . -words path/to/words.txt       # legacy: same path for both
+go run . -target PLEAD                  # force the answer (testing aid)
+go run . -version                       # print version and exit
+go run . -v                             # alias for -version
 go run . -h                             # flag help
 ```
-
-The binary must be run in a real terminal (a TTY). In a pipe or
-redirected shell it exits with a hint instead of hanging.
 
 ### Code layout (Elm architecture)
 

@@ -21,7 +21,14 @@ func main() {
 		"default: ./tuidle-allowed-guesses.json, then ./tuidle-allowed-guesses.txt, then the embedded list")
 	targetFlag := flag.String("target", "", "force the target word (5 letters, for testing); "+
 		"default: chosen at random from the answers list")
+	versionFlag := flag.Bool("version", false, "print version and exit")
+	vFlag := flag.Bool("v", false, "shorthand for -version")
 	flag.Parse()
+
+	if *versionFlag || *vFlag {
+		fmt.Println("tuidle", version)
+		return
+	}
 
 	if *targetFlag != "" && !isFiveLetters(strings.ToUpper(*targetFlag)) {
 		fmt.Fprintln(os.Stderr, "error: -target must be exactly 5 letters A-Z")
