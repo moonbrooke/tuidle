@@ -1,7 +1,6 @@
 # TUIDLE
 
-Wordle clone in your terminal. This is the Rust port of the original Go
-implementation, built with [ratatui](https://ratatui.rs/) and
+Wordle clone in your terminal. Built with [ratatui](https://ratatui.rs/) and
 [crossterm](https://github.com/crossterm-rs/crossterm).
 
 ## Requirements
